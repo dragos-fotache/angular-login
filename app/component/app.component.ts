@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 
+import { LoginPanelComponent } from './login-panel.component';
+
 @Component({
     selector: 'my-app',
     template: `
-        <h1>{{ title }}</h1>
+        <div class="container">
+            <login-panel></login-panel>
+        </div>
     `
 })
 export class AppComponent { 
