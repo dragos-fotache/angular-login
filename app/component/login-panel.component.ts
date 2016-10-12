@@ -17,15 +17,15 @@ import { UserService } from '../service/user.service';
                     <form>
                         <div class="form-group">
                             <label for="userInput">User</label>
-                            <input type="user" class="form-control" id="userInput" placeholder="User"
-                                   #user>
+                            <input type="text" class="form-control" name="user" id="userInput" placeholder="User" required
+                                   [(ngModel)]="user.name">
                         </div>
                         <div class="form-group">
                             <label for="userPassword">Password</label>
-                            <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="passwordInput" placeholder="Password" required
+                                   [(ngModel)]="user.password">
                         </div>
                         <button type="button" class="btn btn-default" (click)="onClickMe()">Click me!</button>
-                        <p>{{values}}</p>
                     </form>
                 </div>
             </div>
@@ -37,16 +37,16 @@ export class LoginPanelComponent implements OnInit {
 
     userService: UserService = new UserService();
 
-    users: User[];
+    user: User; 
 
     constructor() { }
 
     ngOnInit() { 
-        this.users = this.userService.getAll();
+        this.user = new User(undefined, undefined);
     }
 
     onClickMe() {
-        console.log("Button clicked");
+        console.log(this.user.name);
     }
 
 
