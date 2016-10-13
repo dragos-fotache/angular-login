@@ -24,7 +24,7 @@ import { UserService } from '../service/user.service';
                             <label for="userPassword">Password</label>
                             <input type="password" class="form-control" id="passwordInput" placeholder="Password">
                         </div>
-                        <button type="button" class="btn btn-default" (click)="onClickMe()">Click me!</button>
+                        <button type="button" class="btn btn-default" (click)="onClickMe(user.value)">Click me!</button>
                         <p>{{values}}</p>
                     </form>
                 </div>
@@ -45,8 +45,9 @@ export class LoginPanelComponent implements OnInit {
         this.users = this.userService.getAll();
     }
 
-    onClickMe() {
+    onClickMe(v: string) {
         console.log("Button clicked");
+        console.log(v);
     }
 
 
