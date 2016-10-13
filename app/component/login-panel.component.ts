@@ -4,6 +4,7 @@ import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
 
 @Component({
+    providers: [ UserService ],
     selector: 'login-panel',
     template: `
         <div class="row">
@@ -35,11 +36,9 @@ import { UserService } from '../service/user.service';
 })
 export class LoginPanelComponent implements OnInit {
 
-    userService: UserService = new UserService();
-
     user: User; 
 
-    constructor() { }
+    constructor(private userService: UserService) { }
 
     ngOnInit() { 
         this.user = new User(undefined, undefined);
@@ -47,6 +46,7 @@ export class LoginPanelComponent implements OnInit {
 
     onClickMe() {
         console.log(this.user.name);
+        this.userService.login(this.user);
     }
 
 
