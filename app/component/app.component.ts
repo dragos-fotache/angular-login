@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { LoginPanelComponent } from './login-panel.component';
-
 @Component({
     selector: 'my-app',
     template: `
