@@ -1,33 +1,43 @@
-import { User } from '../model/user.model';
-
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
-
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/toPromise';
 
-import { Observable } from 'rxjs/Observable';
+import { User } from '../model/user.model';
+
 
 @Injectable()
 export class UserService {
 
     private path = 'http://localhost:3002/login';
 
+    private actionPath = 'http://localhost:3002/action';
+
     constructor(private http: Http) {
     }
     
-    getAll(): User[] {
-        return [ new User('admin', 'admin'), new User('JohnWick', 'imabadass'), new User('ChuckNorris', 'numero1'), new User('VanDamme', 'musclesfrombrussels')]
-    }
-
     login(user: User) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers, withCredentials: false });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
 
         return this.http.post(this.path, user, options)
             .toPromise()
             .then(response => response)
             .catch(response => response);
+
+    }
+
+    action() {
+
+        let options = new RequestOptions({ withCredentials: true });
+
+        return this.http.get(this.actionPath, options)
+            .toPromise()
+            .then(response => {
+                return response;
+            })
+            .catch(response => response)
     }
 
 }

@@ -4,8 +4,8 @@ import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
 
 @Component({
-    providers: [ UserService ],
     selector: 'login-panel',
+    providers: [ UserService ],
     template: `
         <div class="row">
             <div class="col-md-4"></div>
@@ -26,7 +26,10 @@ import { UserService } from '../service/user.service';
                             <input type="password" class="form-control" name="password" id="passwordInput" placeholder="Password" required
                                    [(ngModel)]="user.password">
                         </div>
-                        <button type="button" class="btn btn-default" (click)="onClickMe()">Click me!</button>
+                        <button type="button" class="btn btn-default" (click)="onClickMe()">OK</button>
+                        <p>{{message}}</p>
+                        <button type="button" class="btn btn-default" (click)="action()">Action</button>
+                        <p>{{message2}}</p>
                     </form>
                 </div>
             </div>
@@ -36,18 +39,38 @@ import { UserService } from '../service/user.service';
 })
 export class LoginPanelComponent implements OnInit {
 
-    user: User; 
+    user: User;
+
+    message: String;
+    message2: String;
 
     constructor(private userService: UserService) { }
 
-    ngOnInit() { 
+    ngOnInit() {
         this.user = new User(undefined, undefined);
     }
 
     onClickMe() {
-        console.log(this.user.name);
-        this.userService.login(this.user);
+        this.userService.login(this.user)
+            .then(response => {
+                if (response.status == 200) {
+                    this.message = "Login successful";
+                } else {
+                    this.message = "Login error";
+                }
+            });
     }
 
+    action() {
+        this.userService.action()
+            .then(response => {
+                if (response.status == 200) {
+                    this.message2 = "Action successful";
+                } else {
+                    this.message2 = "Action error";
+                }
+            });
+
+    }
 
 }
