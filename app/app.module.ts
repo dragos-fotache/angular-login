@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
-import { RouterModule }   from '@angular/router';
+import { Routes, RouterModule }   from '@angular/router';
 
 import { AppComponent }   from './component/app.component';
 import { LoginPanelComponent }   from './component/login-panel.component';
@@ -16,10 +16,9 @@ import { UserService } from './service/user.service';
     FormsModule, 
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: DashboardComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'login', component: LoginPanelComponent },
-      { path: '**', component: DashboardComponent }
     ]) 
   ],
   declarations: [ AppComponent, LoginPanelComponent, DashboardComponent ],

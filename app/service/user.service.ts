@@ -1,7 +1,6 @@
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/toPromise';
 
 import { User } from '../model/user.model';

@@ -30,3 +30,4 @@ System.config({
         'angular-in-memory-web-api': { main: './index.js', defaultExtension: 'js' },
     }
 });
+//# sourceMappingURL=system-config.js.map
